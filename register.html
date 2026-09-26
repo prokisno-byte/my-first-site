@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background-color: #f4f6f9; 
+            color: #333; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        .form-container { 
+            background: #ffffff; 
+            padding: 40px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+            width: 100%; 
+            max-width: 360px; 
+        }
+        h2 { text-align: center; margin-bottom: 24px; color: #24292e; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 6px; font-weight: 500; font-size: 14px; color: #586069; }
+        input { 
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid #d1d5da; 
+            border-radius: 6px; 
+            box-size: border-box; 
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input:focus { border-color: #0366d6; outline: none; box-shadow: 0 0 0 3px rgba(3,102,214,0.3); }
+        .btn-submit { 
+            width: 100%; 
+            padding: 12px; 
+            background-color: #2ea44f; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            font-size: 16px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: background-color 0.2s;
+        }
+        .btn-submit:hover { background-color: #2c974b; }
+        .back-link { display: block; text-align: center; margin-top: 15px; color: #0366d6; text-decoration: none; font-size: 14px; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Создать аккаунт</h2>
+        <!-- Вместо ВАША_ПОЧТА вставьте свой email, чтобы получать данные анкет -->
+        <form action="https://formspree.io" method="POST">
+            <div class="input-group">
+                <label for="username">Имя пользователя</label>
+                <input type="text" id="username" name="username" required placeholder="Придумайте логин">
+            </div>
+            <div class="input-group">
+                <label for="email">Электронная почта</label>
+                <input type="email" id="email" name="email" required placeholder="example@mail.com">
+            </div>
+            <div class="input-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn-submit">Зарегистрироваться</button>
+        </form>
+        <a href="index.html" class="back-link">← Вернуться на главную</a>
+    </div>
+
+</body>
+</html>
