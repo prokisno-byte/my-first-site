@@ -27,7 +27,6 @@
         nav a { color: #8b949e; text-decoration: none; margin: 0 15px; font-weight: 600; font-size: 16px; transition: color 0.2s, text-shadow 0.2s; }
         nav a:hover, nav a.active { color: #ffb703; text-shadow: 0 0 10px rgba(255,183,3,0.3); }
 
-        /* Живая статистика сайта */
         .live-stats {
             background: rgba(22, 26, 34, 0.6); border-bottom: 1px solid #30363d;
             padding: 12px 20px; display: flex; justify-content: center; gap: 40px;
@@ -54,7 +53,7 @@
             border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;
             border: 1px solid rgba(255, 255, 255, 0.03);
         }
-        .skin-image-container img { width: auto; height: auto; max-width: 90%; max-height: 90%; display: block; transition: transform 0.3s ease; }
+        .skin-image-container img { display: block; transition: transform 0.3s ease; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); }
         .skin-card:hover .skin-image-container img { transform: scale(1.08) rotate(-2deg); }
         
         .secret-icon { font-size: 80px; filter: drop-shadow(0 0 15px rgba(138, 43, 226, 0.4)); animation: float 3s ease-in-out infinite; }
@@ -62,7 +61,6 @@
 
         .skin-title { font-size: 19px; font-weight: 700; margin: 5px 0; color: #ffffff; text-align: left; }
         
-        /* Плашки износа */
         .quality-badge { 
             display: inline-block; align-self: flex-start; padding: 3px 8px; font-size: 11px; 
             font-weight: 700; border-radius: 4px; margin-bottom: 10px; text-transform: uppercase; 
@@ -108,7 +106,6 @@
             </nav>
         </header>
 
-        <!-- Блок живой статистики -->
         <div class="live-stats">
             <div class="stat-item">Онлайн-трейдеров: <span id="user-online">124</span></div>
             <div class="stat-item">Сделок за сегодня: <span id="deals-today">57</span></div>
@@ -119,7 +116,7 @@
             <!-- Скин 1: Керамбит -->
             <div class="skin-card rare">
                 <div class="skin-image-container">
-                    <img src="https://akamaihd.net" alt="Керамбит">
+                    <img src="https://akamaihd.net" alt="Керамбит" width="220" height="130">
                 </div>
                 <div class="skin-title">Керамбит | Градиент</div>
                 <div class="quality-badge fn">Прямо с завода (0.02)</div>
@@ -130,7 +127,7 @@
             <!-- Скин 2: AK-47 -->
             <div class="skin-card classified">
                 <div class="skin-image-container">
-                    <img src="https://akamaihd.net" alt="AK-47">
+                    <img src="https://akamaihd.net" alt="AK-47" width="220" height="130">
                 </div>
                 <div class="skin-title">AK-47 | Вулкан</div>
                 <div class="quality-badge mw">Немного поношенное</div>
@@ -141,7 +138,7 @@
             <!-- Скин 3: AWP -->
             <div class="skin-card classified">
                 <div class="skin-image-container">
-                    <img src="https://akamaihd.net" alt="AWP">
+                    <img src="https://akamaihd.net" alt="AWP" width="220" height="130">
                 </div>
                 <div class="skin-title">AWP | Азимов</div>
                 <div class="quality-badge ft">После полевых</div>
@@ -169,13 +166,15 @@
             <a href="https://discord.gg" target="_blank" class="social-btn ds">Наш Discord сервер</a>
         </div>
     </footer>
+
+    
     <script>
         function updateStats() {
             var randOnline = Math.floor(Math.random() * 41) + 110;
             var elDeals = document.getElementById('deals-today');
             var currentDeals = parseInt(elDeals.innerText);
-            if (Math.random() > 0.6) {
-                currentDeals = currentDeals + 1;
+            if (Math.random() > 0.6) { 
+                currentDeals = currentDeals + 1; 
             }
             document.getElementById('user-online').innerText = randOnline;
             elDeals.innerText = currentDeals;
