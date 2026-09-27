@@ -53,7 +53,7 @@
             border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;
             border: 1px solid rgba(255, 255, 255, 0.03);
         }
-        .skin-image-container img { display: block; transition: transform 0.3s ease; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); }
+        .skin-image-container img { display: block; max-width: 90%; max-height: 90%; object-fit: contain; transition: transform 0.3s ease; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); }
         .skin-card:hover .skin-image-container img { transform: scale(1.08) rotate(-2deg); }
         
         .secret-icon { font-size: 80px; filter: drop-shadow(0 0 15px rgba(138, 43, 226, 0.4)); animation: float 3s ease-in-out infinite; }
@@ -113,10 +113,10 @@
         </div>
 
         <div class="shop-container">
-            <!-- Скин 1: Керамбит -->
+            <!-- Скин 1: Керамбит Градиент -->
             <div class="skin-card rare">
                 <div class="skin-image-container">
-                    <img src="https://akamaihd.net" alt="Керамбит" width="220" height="130">
+                    <img src="https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SD1iWwOpzj-1gSCGn20tztm_UyIn_JHKUbgYlWMcmQ-ZcskSwldS0MOnntAfd3YlMzH35jntXrnE8SOGRGG8" alt="Керамбит | Градиент">
                 </div>
                 <div class="skin-title">Керамбит | Градиент</div>
                 <div class="quality-badge fn">Прямо с завода (0.02)</div>
@@ -124,10 +124,10 @@
                 <a href="register.html?item=Karambit_Fade&price=20000_UAH" class="btn-buy">Купить</a>
             </div>
 
-            <!-- Скин 2: AK-47 -->
+            <!-- Скин 2: AK-47 Вулкан -->
             <div class="skin-card classified">
                 <div class="skin-image-container">
-                    <img src="https://akamaihd.net" alt="AK-47" width="220" height="130">
+                    <img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV086jloKOhcj5Nr_Yg2Yf6cR02LmS9tn3ilK1qBVkMGzyIICRdgRvYVCDqwTsyO7n1JTo6M7PwGwj5Hei-fvc4A" alt="AK-47 | Вулкан">
                 </div>
                 <div class="skin-title">AK-47 | Вулкан</div>
                 <div class="quality-badge mw">Немного поношенное</div>
@@ -135,10 +135,10 @@
                 <a href="register.html?item=AK47_Vulcan&price=5500_UAH" class="btn-buy">Купить</a>
             </div>
 
-            <!-- Скин 3: AWP -->
+            <!-- Скин 3: AWP Азимов (ФИКС ССЫЛКИ STEAM) -->
             <div class="skin-card classified">
                 <div class="skin-image-container">
-                    <img src="https://akamaihd.net" alt="AWP" width="220" height="130">
+                    <img src="https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf_jdk7uW-V6V-Kf2cGFiYxO9gqa9sSS_mwR4h4D6Az9ardyqQa1NyDpIkTOBb5ES7wYDiMOyz4lPf2YsX02yg2Ubsh" alt="AWP | Азимов">
                 </div>
                 <div class="skin-title">AWP | Азимов</div>
                 <div class="quality-badge ft">После полевых</div>
@@ -166,15 +166,13 @@
             <a href="https://discord.gg" target="_blank" class="social-btn ds">Наш Discord сервер</a>
         </div>
     </footer>
-
-    
     <script>
         function updateStats() {
             var randOnline = Math.floor(Math.random() * 41) + 110;
             var elDeals = document.getElementById('deals-today');
             var currentDeals = parseInt(elDeals.innerText);
-            if (Math.random() > 0.6) { 
-                currentDeals = currentDeals + 1; 
+            if (Math.random() > 0.6) {
+                currentDeals = currentDeals + 1;
             }
             document.getElementById('user-online').innerText = randOnline;
             elDeals.innerText = currentDeals;
@@ -182,6 +180,10 @@
         var startDeals = Math.floor(Math.random() * 26) + 45;
         document.getElementById('deals-today').innerText = startDeals;
         setInterval(updateStats, 4000);
+    </script>
+</body>
+</html>
+
     </script>
 </body>
 </html>
