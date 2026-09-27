@@ -100,25 +100,24 @@
         <header>
             <h1>CS2 Skin Shop & Донат</h1>
             <p>Премиальная витрина редких игровых предметов</p>
-        <nav>
-            <a href="index.html" class="active">Витрина</a>
-            <a href="reviews.html">Отзывы и Гарантии</a>
-            <a href="support.html" style="color: #8b949e; text-decoration: none; margin-left: 30px; font-weight: 600; font-size: 16px; transition: color 0.2s;" onmouseover="this.style.color='#ffb703'" onmouseout="this.style.color='#8b949e'">Поддержка</a>
-        </nav>
-
+            <nav>
+                <a href="index.html" class="active">Витрина</a>
+                <a href="reviews.html">Отзывы и Гарантии</a>
+                <a href="support.html" style="color: #8b949e; text-decoration: none; margin-left: 30px; font-weight: 600; font-size: 16px; transition: color 0.2s;" onmouseover="this.style.color='#ffb703'" onmouseout="this.style.color='#8b949e'">Поддержка</a>
+            </nav>
         </header>
 
         <div class="live-stats">
-            <div class="stat-item">Онлайн-трейдеров: <span id="user-online">124</span></div>
+            <div class="stat-item">Online-трейдеров: <span id="user-online">124</span></div>
             <div class="stat-item">Сделок за сегодня: <span id="deals-today">57</span></div>
             <div class="stat-item">Доставка заявки: <span>~3 мин</span></div>
         </div>
 
         <div class="shop-container">
-            <!-- Скин 1: Керамбит Градиент -->
+            <!-- Скин 1: Керамбит -->
             <div class="skin-card rare">
                 <div class="skin-image-container">
-                    <img src="https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SD1iWwOpzj-1gSCGn20tztm_UyIn_JHKUbgYlWMcmQ-ZcskSwldS0MOnntAfd3YlMzH35jntXrnE8SOGRGG8" alt="Керамбит | Градиент">
+                    <img src="https://akamaihd.net" alt="Керамбит">
                 </div>
                 <div class="skin-title">Керамбит | Градиент</div>
                 <div class="quality-badge fn">Прямо с завода (0.02)</div>
@@ -126,10 +125,10 @@
                 <a href="register.html?item=Karambit_Fade&price=20000_UAH" class="btn-buy">Купить</a>
             </div>
 
-            <!-- Скин 2: AK-47 Вулкан -->
+            <!-- Скин 2: AK-47 -->
             <div class="skin-card classified">
                 <div class="skin-image-container">
-                    <img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV086jloKOhcj5Nr_Yg2Yf6cR02LmS9tn3ilK1qBVkMGzyIICRdgRvYVCDqwTsyO7n1JTo6M7PwGwj5Hei-fvc4A" alt="AK-47 | Вулкан">
+                    <img src="https://akamaihd.net" alt="AK-47">
                 </div>
                 <div class="skin-title">AK-47 | Вулкан</div>
                 <div class="quality-badge mw">Немного поношенное</div>
@@ -137,10 +136,10 @@
                 <a href="register.html?item=AK47_Vulcan&price=5500_UAH" class="btn-buy">Купить</a>
             </div>
 
-            <!-- Скин 3: AWP Азимов (ФИКС ССЫЛКИ STEAM) -->
+            <!-- Скин 3: AWP -->
             <div class="skin-card classified">
                 <div class="skin-image-container">
-                    <img src="https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf_jdk7uW-V6V-Kf2cGFiYxO9gqa9sSS_mwR4h4D6Az9ardyqQa1NyDpIkTOBb5ES7wYDiMOyz4lPf2YsX02yg2Ubsh123" alt="AWP | Азимов">
+                    <img src="https://akamaihd.net" alt="AWP">
                 </div>
                 <div class="skin-title">AWP | Азимов</div>
                 <div class="quality-badge ft">После полевых</div>
@@ -161,31 +160,27 @@
         </div>
     </div>
 
+    <!-- Твоя реальная ссылка на ТГК вшита сюда -->
     <footer>
-        <div class="footer-text">Возникли вопросы по обмену или донату? Свяжитесь с создателем напрямую:</div>
+        <div class="footer-text">Возникли вопросы по обмену или донату? Свяжитесь с поддержкой:</div>
         <div class="social-buttons">
-            <a href="https://t.me" target="_blank" class="social-btn tg">Telegram Администратора</a>
-            <a href="https://discord.gg" target="_blank" class="social-btn ds">Наш Discord сервер</a>
+            <a href="https://t.me/tex123poderzhka" target="_blank" class="social-btn tg">Telegram Поддержка</a>
         </div>
     </footer>
-    <script>
-        function updateStats() {
-            var randOnline = Math.floor(Math.random() * 41) + 110;
-            var elDeals = document.getElementById('deals-today');
-            var currentDeals = parseInt(elDeals.innerText);
-            if (Math.random() > 0.6) {
-                currentDeals = currentDeals + 1;
-            }
-            document.getElementById('user-online').innerText = randOnline;
-            elDeals.innerText = currentDeals;
-        }
-        var startDeals = Math.floor(Math.random() * 26) + 45;
-        document.getElementById('deals-today').innerText = startDeals;
-        setInterval(updateStats, 4000);
-    </script>
-</body>
-</html>
 
-    </script>
-</body>
-</html>
+    <script>
+<script>
+    function updateStats() {
+        var randOnline = Math.floor(Math.random() * 41) + 110;
+        var elDeals = document.getElementById('deals-today');
+        var currentDeals = parseInt(elDeals.innerText);
+        if (Math.random() > 0.6) {
+            currentDeals = currentDeals + 1;
+        }
+        document.getElementById('user-online').innerText = randOnline;
+        elDeals.innerText = currentDeals;
+    }
+    var startDeals = Math.floor(Math.random() * 26) + 45;
+    document.getElementById('deals-today').innerText = startDeals;
+    setInterval(updateStats, 4000);
+</script>
