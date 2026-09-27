@@ -3,127 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
+    <title>Оформление заказа</title>
     <style>
-        /* Светлая тема */
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; 
-            background-color: #f4f6f9; 
-            color: #333; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            margin: 0; 
-            transition: background-color 0.3s, color 0.3s;
+            background-color: #1a1d20; color: #f0f2f5; 
+            display: flex; justify-content: center; align-items: center; 
+            height: 100vh; margin: 0; 
         }
         .form-container { 
-            background: #ffffff; 
-            padding: 40px; 
-            border-radius: 8px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-            width: 100%; 
-            max-width: 360px; 
-            transition: background 0.3s, box-shadow 0.3s;
+            background: #22272e; padding: 40px; border-radius: 8px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4); border: 1px solid #444c56;
+            width: 100%; max-width: 360px; 
         }
-        h2 { text-align: center; margin-bottom: 24px; color: #24292e; transition: color 0.3s; }
-        label { display: block; margin-bottom: 6px; font-weight: 500; font-size: 14px; color: #586069; transition: color 0.3s; }
-        input { 
-            width: 100%; 
-            padding: 10px; 
-            border: 1px solid #d1d5da; 
-            border-radius: 6px; 
-            font-size: 16px;
-            box-sizing: border-box;
-            background-color: #fff;
-            color: #333;
-        }
-        
-        /* ТЕМНАЯ тема */
-        body.dark-mode { background-color: #1a1d20; color: #f0f2f5; }
-        body.dark-mode .form-container { background: #22272e; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 1px solid #444c56; }
-        body.dark-mode h2 { color: #ffffff; }
-        body.dark-mode label { color: #adbac7; }
-        body.dark-mode input { background-color: #1c2128; border-color: #444c56; color: #ffffff; }
-
+        h2 { text-align: center; margin-bottom: 24px; color: #ffffff; }
         .input-group { margin-bottom: 20px; }
-        input:focus { border-color: #0366d6; outline: none; box-shadow: 0 0 0 3px rgba(3,102,214,0.3); }
-        
+        label { display: block; margin-bottom: 6px; font-weight: 500; font-size: 14px; color: #adbac7; }
+        input { 
+            width: 100%; padding: 10px; border: 1px solid #444c56; 
+            border-radius: 6px; font-size: 16px; box-sizing: border-box;
+            background-color: #1c2128; color: #ffffff;
+        }
+        input:focus { border-color: #2ea44f; outline: none; }
+        input[readonly] { background-color: #2d3139; color: #adbac7; cursor: not-allowed; }
         .btn-submit { 
-            width: 100%; 
-            padding: 12px; 
-            background-color: #2ea44f; 
-            color: white; 
-            border: none; 
-            border-radius: 6px; 
-            font-size: 16px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            transition: background-color 0.2s;
+            width: 100%; padding: 12px; background-color: #2ea44f; 
+            color: white; border: none; border-radius: 6px; 
+            font-size: 16px; font-weight: bold; cursor: pointer; 
         }
         .btn-submit:hover { background-color: #2c974b; }
-        .back-link { display: block; text-align: center; margin-top: 15px; color: #0366d6; text-decoration: none; font-size: 14px; }
-        
-        .theme-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 8px 14px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 6px;
-            border: 1px solid #d1d5da;
-            background-color: #ffffff;
-            color: #333;
-        }
-        body.dark-mode .theme-toggle { background-color: #2d3139; color: #ffffff; border-color: #444c56; }
+        .back-link { display: block; text-align: center; margin-top: 15px; color: #58a6ff; text-decoration: none; font-size: 14px; }
     </style>
 </head>
 <body>
 
-    <button class="theme-toggle" onclick="toggleTheme()">Сменить тему</button>
-
     <div class="form-container">
-        <h2>Создать аккаунт</h2>
-        <form onsubmit="sendEmail(event)">
+        <h2>Оформление покупки</h2>
+        <form onsubmit="sendOrder(event)">
             <div class="input-group">
-                <label for="username">Имя пользователя</label>
-                <input type="text" id="username" required placeholder="Придумайте логин">
+                <label for="skin-name">Выбранный товар</label>
+                <!-- Это поле автоматически заполнится названием скина -->
+                <input type="text" id="skin-name" readonly>
             </div>
             <div class="input-group">
-                <label for="email">Электронная почта</label>
+                <label for="steam-link">Ссылка на Ваш Трейд (Trade URL)</label>
+                <input type="text" id="steam-link" required placeholder="https://steamcommunity.com...">
+            </div>
+            <div class="input-group">
+                <label for="email">Ваш Email для связи</label>
                 <input type="email" id="email" required placeholder="example@mail.com">
             </div>
-            <div class="input-group">
-                <label for="password">Пароль</label>
-                <input type="password" id="password" required placeholder="••••••••">
-            </div>
-            <button type="submit" class="btn-submit">Зарегистрироваться</button>
+            <button type="submit" class="btn-submit">Подтвердить заказ</button>
         </form>
-        <a href="index.html" class="back-link">← Вернуться на главную</a>
+        <a href="index.html" class="back-link">← Назад в магазин</a>
     </div>
 
     <script>
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-mode');
-        }
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-            if (document.body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
-            }
-        }
+        // Скрипт считывает какой скин был нажат на главной странице
+        var urlParams = new URLSearchParams(window.location.search);
+        var itemName = urlParams.get('item') || 'Не выбран';
+        document.getElementById('skin-name').value = itemName.replace('_', ' ');
 
-        function sendEmail(event) {
+        function sendOrder(event) {
             event.preventDefault();
-            var username = document.getElementById('username').value;
+            var skin = document.getElementById('skin-name').value;
+            var trade = document.getElementById('steam-link').value;
             var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            var subject = encodeURIComponent("Новая регистрация на сайте");
-            var body = encodeURIComponent("Данные:\n\nЛогин: " + username + "\nEmail: " + email + "\nПароль: " + password);
+            
+            var subject = encodeURIComponent("Новый заказ скина CS2");
+            var body = encodeURIComponent("Заказ:\n\nСкин: " + skin + "\nТрейд-ссылка: " + trade + "\nEmail покупателя: " + email);
+            
+            // Отправка черновика письма вам на почту
             window.location.href = "mailto:prokisno@://gmail.com" + subject + "&body=" + body;
         }
     </script>
