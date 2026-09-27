@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой первый сайт</title>
     <style>
+        /* Базовые стили для светлой темы */
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; 
             text-align: center; 
@@ -12,10 +13,41 @@
             padding-top: 100px; 
             background-color: #f4f6f9; 
             color: #333;
+            transition: background-color 0.3s, color 0.3s;
         }
-        h1 { color: #24292e; font-size: 32px; margin-bottom: 10px; }
-        p { color: #586069; font-size: 18px; margin-bottom: 30px; }
+        h1 { color: #24292e; font-size: 32px; margin-bottom: 10px; transition: color 0.3s; }
+        p { color: #586069; font-size: 18px; margin-bottom: 30px; transition: color 0.3s; }
         
+        /* Стили для ТЕМНОЙ темы */
+        body.dark-mode {
+            background-color: #1a1d20;
+            color: #f0f2f5;
+        }
+        body.dark-mode h1 { color: #ffffff; }
+        body.dark-mode p { color: #adbac7; }
+
+        /* Кнопка смены темы */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 14px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+            border: 1px solid #d1d5da;
+            background-color: #ffffff;
+            color: #333;
+            transition: all 0.2s;
+        }
+        body.dark-mode .theme-toggle {
+            background-color: #2d3139;
+            color: #ffffff;
+            border-color: #444c56;
+        }
+        
+        /* Кнопка регистрации */
         .btn-register {
             display: inline-block;
             padding: 14px 28px;
@@ -30,21 +62,34 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: background-color 0.2s, transform 0.1s;
         }
-        .btn-register:hover {
-            background-color: #2c974b;
-        }
-        .btn-register:active {
-            transform: scale(0.98);
-        }
+        .btn-register:hover { background-color: #2c974b; }
+        .btn-register:active { transform: scale(0.98); }
     </style>
 </head>
 <body>
 
+    <!-- Кнопка переключения -->
+    <button class="theme-toggle" onclick="toggleTheme()">Сменить тему</button>
+
     <h1>Ура! Мой бесплатный сайт работает!</h1>
     <p>Проект успешно запущен на GitHub Pages без конструкторов и Google.</p>
     
-    <!-- Кнопка ведет на ваш второй файл в репозитории -->
     <a href="register.html" class="btn-register">Зарегистрироваться на сайте</a>
 
+    <script>
+        // Проверяем сохраненную тему
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+        // Функция переключения
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
 </body>
 </html>
