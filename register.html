@@ -6,74 +6,169 @@
     <title>Оформление заказа</title>
     <style>
         body { 
-            font-family: 'Segoe UI', Arial, sans-serif; 
-            background-color: #1a1d20; color: #f0f2f5; 
-            display: flex; justify-content: center; align-items: center; 
-            height: 100vh; margin: 0; 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            background: radial-gradient(circle at top, #1c1f26 0%, #0d0e12 100%);
+            color: #f0f2f5; display: flex; flex-direction: column; justify-content: space-between;
+            min-height: 100vh; margin: 0; text-align: center;
         }
+        header { 
+            background: linear-gradient(180deg, rgba(22, 26, 34, 0.9) 0%, rgba(13, 14, 18, 0.9) 100%);
+            padding: 35px 20px; border-bottom: 2px solid #ffb703; 
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+        header h1 { margin: 0; color: #ffffff; font-size: 34px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+        nav { margin-top: 20px; }
+        nav a { color: #8b949e; text-decoration: none; margin: 0 15px; font-weight: 600; font-size: 16px; }
+
+        .center-wrap { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
         .form-container { 
-            background: #22272e; padding: 40px; border-radius: 8px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4); border: 1px solid #444c56;
+            background: #161a22; padding: 40px; border-radius: 12px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #30363d;
             width: 100%; max-width: 360px; 
         }
         h2 { text-align: center; margin-bottom: 24px; color: #ffffff; }
-        .input-group { margin-bottom: 20px; }
+        .input-group { margin-bottom: 20px; text-align: left; }
         label { display: block; margin-bottom: 6px; font-weight: 500; font-size: 14px; color: #adbac7; }
-        input { 
+        input, select { 
             width: 100%; padding: 10px; border: 1px solid #444c56; 
             border-radius: 6px; font-size: 16px; box-sizing: border-box;
             background-color: #1c2128; color: #ffffff;
         }
-        input:focus { border-color: #2ea44f; outline: none; }
+        input:focus, select:focus { border-color: #2ea44f; outline: none; }
         input[readonly] { background-color: #2d3139; color: #adbac7; cursor: not-allowed; }
+        
         .btn-submit { 
-            width: 100%; padding: 12px; background-color: #2ea44f; 
-            color: white; border: none; border-radius: 6px; 
-            font-size: 16px; font-weight: bold; cursor: pointer; 
+            width: 100%; padding: 12px; 
+            background: linear-gradient(135deg, #1f7a3e 0%, #2ea44f 100%);
+            color: white; border: none; border-radius: 8px; 
+            font-size: 16px; font-weight: bold; cursor: pointer; text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(46, 164, 79, 0.2); margin-top: 10px;
         }
-        .btn-submit:hover { background-color: #2c974b; }
+        .btn-submit:hover { background: linear-gradient(135deg, #2ea44f 0%, #34d058 100%); }
         .back-link { display: block; text-align: center; margin-top: 15px; color: #58a6ff; text-decoration: none; font-size: 14px; }
+        
+        footer { background: #0d0e12; border-top: 1px solid #30363d; padding: 25px 20px; }
+        .footer-text { color: #8b949e; font-size: 14px; margin-bottom: 15px; }
+        .social-buttons { display: flex; justify-content: center; gap: 15px; }
+        .social-btn {
+            color: #ffffff; background: #161a22; border: 1px solid #30363d;
+            padding: 8px 18px; font-weight: 600; text-decoration: none; border-radius: 6px; font-size: 14px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="form-container">
-        <h2>Оформление покупки</h2>
-        <form onsubmit="sendOrder(event)">
-            <div class="input-group">
-                <label for="skin-name">Выбранный товар</label>
-                <!-- Это поле автоматически заполнится названием скина -->
-                <input type="text" id="skin-name" readonly>
-            </div>
-            <div class="input-group">
-                <label for="steam-link">Ссылка на Ваш Трейд (Trade URL)</label>
-                <input type="text" id="steam-link" required placeholder="https://steamcommunity.com...">
-            </div>
-            <div class="input-group">
-                <label for="email">Ваш Email для связи</label>
-                <input type="email" id="email" required placeholder="example@mail.com">
-            </div>
-            <button type="submit" class="btn-submit">Подтвердить заказ</button>
-        </form>
-        <a href="index.html" class="back-link">← Назад в магазин</a>
+    <header>
+        <h1>CS2 Skin Shop & Донат</h1>
+        <nav>
+            <a href="index.html" style="color: #8b949e; text-decoration: none;">Витрина</a>
+            <a href="reviews.html" style="color: #8b949e; text-decoration: none; margin-left: 30px;">Отзывы и Гарантии</a>
+        </nav>
+    </header>
+
+    <div class="center-wrap">
+        <div class="form-container">
+            <h2>Оформление покупки</h2>
+            <form onsubmit="sendOrder(event)">
+                <div class="input-group">
+                    <label for="skin-name">Выбранное оружие</label>
+                    <input type="text" id="skin-name" readonly>
+                </div>
+                
+                <!-- Новое выпадающее меню выбора износа -->
+                <div class="input-group" id="wear-group">
+                    <label for="skin-wear">Качество (Потертость)</label>
+                    <select id="skin-wear" onchange="recalculatePrice()">
+                        <option value="FN">Прямо с завода (FN)</option>
+                        <option value="MW">Немного поношенное (MW)</option>
+                        <option value="FT">После полевых испытаний (FT)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="skin-price-display">Итоговая цена</label>
+                    <input type="text" id="skin-price-display" readonly>
+                </div>
+
+                <div class="input-group">
+                    <label for="steam-link">Ссылка на Ваш обмен (Trade URL)</label>
+                    <input type="text" id="steam-link" required placeholder="https://steamcommunity.com...">
+                </div>
+                <div class="input-group">
+                    <label for="email">Ваш Email для связи</label>
+                    <input type="email" id="email" required placeholder="example@mail.com">
+                </div>
+                <button type="submit" class="btn-submit">Подтвердить заказ</button>
+            </form>
+            <a href="index.html" class="back-link">← Назад в магазин</a>
+        </div>
     </div>
 
+    <footer>
+        <div class="footer-text">Возникли вопросы по обмену или донату? Свяжитесь с создателем напрямую:</div>
+        <div class="social-buttons">
+            <a href="https://t.me" target="_blank" class="social-btn" style="background:#24a1de; border-color:#24a1de;">Telegram Администратора</a>
+            <a href="https://discord.gg" target="_blank" class="social-btn" style="background:#5865f2; border-color:#5865f2; margin-left: 15px;">Наш Discord сервер</a>
+        </div>
+    </footer>
+
     <script>
-        // Скрипт считывает какой скин был нажат на главной странице
         var urlParams = new URLSearchParams(window.location.search);
-        var itemName = urlParams.get('item') || 'Не выбран';
-        document.getElementById('skin-name').value = itemName.replace('_', ' ');
+        var itemKey = urlParams.get('item') || 'Не выбран';
+        
+        // Базовые цены для «Прямо с завода»
+        var basePrices = {
+            'Karambit_Fade': 20000,
+            'AK47_Vulcan': 5500,
+            'AWP_Asiimov': 4300,
+            'Secret_Drop_Box': 1500
+        };
+
+        // Подсовываем красивое имя пушки
+        var itemNames = {
+            'Karambit_Fade': 'Керамбит | Градиент',
+            'AK47_Vulcan': 'AK-47 | Вулкан',
+            'AWP_Asiimov': 'AWP | Азимов',
+            'Secret_Drop_Box': 'Случайный Secret-Скин'
+        };
+
+        document.getElementById('skin-name').value = itemNames[itemKey] || itemKey.replace(/_/g, ' ');
+
+        // Скрываем выбор износа для секретного бокса
+        if (itemKey === 'Secret_Drop_Box') {
+            document.getElementById('wear-group').style.display = 'none';
+        }
+
+        function recalculatePrice() {
+            var wear = document.getElementById('skin-wear').value;
+            var basePrice = basePrices[itemKey] || 0;
+            var finalPrice = basePrice;
+
+            // Если качество хуже, делаем скин дешевле (как в игре)
+            if (itemKey !== 'Secret_Drop_Box') {
+                if (wear === 'MW') finalPrice = Math.floor(basePrice * 0.85); // -15%
+                if (wear === 'FT') finalPrice = Math.floor(basePrice * 0.70); // -30%
+            }
+
+            document.getElementById('skin-price-display').value = finalPrice + " ₴";
+        }
+
+        // Запускаем первый расчет цены при открытии
+        recalculatePrice();
 
         function sendOrder(event) {
             event.preventDefault();
             var skin = document.getElementById('skin-name').value;
+            var wear = document.getElementById('skin-wear').value;
+            var price = document.getElementById('skin-price-display').value;
             var trade = document.getElementById('steam-link').value;
             var email = document.getElementById('email').value;
             
-            var subject = encodeURIComponent("Новый заказ скина CS2");
-            var body = encodeURIComponent("Заказ:\n\nСкин: " + skin + "\nТрейд-ссылка: " + trade + "\nEmail покупателя: " + email);
+            var wearText = (itemKey === 'Secret_Drop_Box') ? '' : ' [' + wear + ']';
             
-            // Отправка черновика письма вам на почту
+            var subject = encodeURIComponent("Новый заказ скина CS2");
+            var body = encodeURIComponent("Детали покупки:\n\nТовар: " + skin + wearText + "\nЦена: " + price + "\nТрейд-ссылка: " + trade + "\nEmail для связи: " + email);
+            
             window.location.href = "mailto:prokisno@://gmail.com" + subject + "&body=" + body;
         }
     </script>
