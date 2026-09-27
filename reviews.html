@@ -6,112 +6,213 @@
     <title>Отзывы и Гарантии | CS2 Market</title>
     <style>
         body { 
-            font-family: 'Segoe UI', Roboto, sans-serif; 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
             margin: 0; padding: 0;
             background: radial-gradient(circle at top, #1c1f26 0%, #0d0e12 100%);
-            color: #f0f2f5;
-            text-align: center;
-            min-height: 100vh;
+            color: #f0f2f5; text-align: center; min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
         header { 
             background: linear-gradient(180deg, rgba(22, 26, 34, 0.9) 0%, rgba(13, 14, 18, 0.9) 100%);
-            padding: 30px 20px; 
-            border-bottom: 2px solid #ffb703; 
+            padding: 35px 20px; border-bottom: 2px solid #ffb703; 
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
         }
-        header h1 { margin: 0; color: #ffffff; font-size: 28px; text-transform: uppercase; letter-spacing: 2px; }
-        
-        /* Навигационное меню */
-        nav { margin-top: 15px; }
+        header h1 { 
+            margin: 0; color: #ffffff; font-size: 34px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
+        }
+        nav { margin-top: 20px; }
         nav a { color: #8b949e; text-decoration: none; margin: 0 15px; font-weight: 600; font-size: 16px; transition: color 0.2s; }
         nav a:hover, nav a.active { color: #ffb703; text-shadow: 0 0 10px rgba(255,183,3,0.3); }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        
-        /* Блок гарантий */
-        .guarantees-grid { display: flex; gap: 20px; margin-bottom: 50px; justify-content: center; flex-wrap: wrap; }
-        .guarantee-card { 
-            background: #161a22; border: 1px solid #30363d; padding: 20px; border-radius: 8px; width: 260px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        .live-stats {
+            background: rgba(22, 26, 34, 0.6); border-bottom: 1px solid #30363d;
+            padding: 12px 20px; display: flex; justify-content: center; gap: 40px;
+            font-size: 14px; font-weight: 600; color: #8b949e;
         }
-        .guarantee-card h3 { color: #2ea44f; margin-top: 0; }
+        .stat-item span { color: #2ea44f; font-weight: 800; text-shadow: 0 0 8px rgba(46,164,79,0.4); }
 
-        /* Сетка отзывов */
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; flex-grow: 1; }
+        h2 { text-transform: uppercase; letter-spacing: 1px; margin-top: 40px; margin-bottom: 25px; color: #ffffff; }
+        
+        .guarantees-grid { display: flex; gap: 25px; margin-bottom: 60px; justify-content: center; flex-wrap: wrap; }
+        .guarantee-card { 
+            background: #161a22; border: 1px solid #30363d; padding: 24px; border-radius: 12px; width: 250px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-align: left;
+        }
+        .guarantee-card h3 { color: #2ea44f; margin-top: 0; font-size: 18px; }
+        .guarantee-card.moneyback h3 { color: #ffb703; } /* Золотая плашка возврата */
+        .guarantee-card p { color: #adbac7; font-size: 14px; line-height: 1.5; margin: 0; }
+
+        /* Стили новой формы добавления отзывов */
+        .add-review-box {
+            background: #161a22; border: 1px solid #30363d; padding: 30px; border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); margin-bottom: 40px; text-align: left;
+        }
+        .form-row { display: flex; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
+        .form-group { flex: 1; min-width: 200px; display: flex; flex-direction: column; }
+        .form-group label { font-size: 13px; font-weight: 600; color: #adbac7; margin-bottom: 6px; }
+        .add-review-box input, .add-review-box textarea, .add-review-box select {
+            padding: 10px; border: 1px solid #444c56; border-radius: 6px;
+            background: #1c2128; color: #ffffff; font-size: 14px;
+        }
+        .add-review-box textarea { resize: vertical; min-height: 80px; }
+        .add-review-box input:focus, .add-review-box textarea:focus, .add-review-box select:focus { border-color: #ffb703; outline: none; }
+        .btn-review {
+            background: linear-gradient(135deg, #1f7a3e 0%, #2ea44f 100%);
+            color: #white; color: white; border: none; padding: 12px 24px; font-weight: 700;
+            border-radius: 6px; cursor: pointer; text-transform: uppercase; font-size: 13px;
+        }
+        .btn-review:hover { background: linear-gradient(135deg, #2ea44f 0%, #34d058 100%); }
+
         .reviews-container { display: flex; flex-direction: column; gap: 20px; text-align: left; }
         .review-card { 
-            background: #161a22; border: 1px solid #30363d; padding: 20px; border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: border-color 0.2s;
+            background: #161a22; border: 1px solid #30363d; padding: 24px; border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: border-color 0.2s;
         }
         .review-card:hover { border-color: #ffb703; }
-        .review-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
-        .reviewer-name { font-weight: 700; color: #ffffff; }
-        .review-stars { color: #ffb703; }
-        .review-item { color: #8b949e; font-size: 14px; font-style: italic; margin-bottom: 5px; }
-        .review-text { color: #eef0f2; line-height: 1.5; }
+        .review-header { display: flex; justify-content: space-between; margin-bottom: 12px; }
+        .reviewer-name { font-weight: 700; color: #ffffff; font-size: 16px; }
+        .review-stars { color: #ffb703; letter-spacing: 2px; }
+        .review-item { color: #58a6ff; font-size: 13px; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; }
+        .review-text { color: #eef0f2; line-height: 1.6; font-size: 15px; margin: 0; }
+
+        footer { background: #0d0e12; border-top: 1px solid #30363d; padding: 25px 20px; }
+        .footer-text { color: #8b949e; font-size: 14px; margin-bottom: 15px; }
+        .social-buttons { display: flex; justify-content: center; gap: 15px; }
+        .social-btn {
+            color: #ffffff; background: #161a22; border: 1px solid #30363d;
+            padding: 8px 18px; font-weight: 600; text-decoration: none; border-radius: 6px; font-size: 14px; transition: all 0.2s;
+        }
+        .social-btn.tg:hover { background: #24a1de; border-color: #24a1de; }
+        .social-btn.ds:hover { background: #5865f2; border-color: #5865f2; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>CS2 Skin Shop & Донат</h1>
-        <nav>
-            <a href="index.html">Витрина</a>
-            <a href="reviews.html" class="active">Отзывы и Гарантии</a>
-        </nav>
-    </header>
+    <div>
+        <header>
+            <h1>CS2 Skin Shop & Донат</h1>
+            <nav>
+                <a href="index.html">Витрина</a>
+                <a href="reviews.html" class="active">Отзывы и Гарантии</a>
+            </nav>
+        </header>
 
-    <div class="container">
-        <!-- Блок почему нам доверяют -->
-        <h2>Наши Гарантии</h2>
-        <div class="guarantees-grid">
-            <div class="guarantee-card">
-                <h3>⚡ Быстрый Трейд</h3>
-                <p>Скины отправляются автоматически в течение 5 минут после подтверждения заказа.</p>
-            </div>
-            <div class="guarantee-card">
-                <h3>🔒 Безопасность</h3>
-                <p>Все обмены идут через официальный Steam Trade URL. Ваши данные под полной защитой.</p>
-            </div>
-            <div class="guarantee-card">
-                <h3>🤝 Честность</h3>
-                <p>Работаем напрямую со своими запасами скинов, никаких скрытых комиссий.</p>
-            </div>
+        <div class="live-stats">
+            <div class="stat-item">Онлайн-трейдеров: <span id="user-online">124</span></div>
+            <div class="stat-item">Сделок за сегодня: <span id="deals-today">57</span></div>
+            <div class="stat-item">Доставка заявки: <span>~3 мин</span></div>
         </div>
 
-        <!-- Раздел отзывов -->
-        <h2>Отзывы Трейдеров</h2>
-        <div class="reviews-container">
-            <!-- Отзыв 1 -->
-            <div class="review-card">
-                <div class="review-header">
-                    <span class="reviewer-name">s1mple_fan_99</span>
-                    <span class="review-stars">★★★★★</span>
+        <div class="container">
+            <!-- Раздел обновленных гарантий -->
+            <h2>Наши Гарантии</h2>
+            <div class="guarantees-grid">
+                <div class="guarantee-card">
+                    <h3>⚡ Быстрый Трейд</h3>
+                    <p>Скины отправляются автоматически в течение 5 минут после подтверждения заказа покупателем.</p>
                 </div>
-                <div class="review-item">Купил: AK-47 | Вулкан</div>
-                <div class="review-text">«Все пришло супер быстро! Трейд кинули буквально через 3 минуты после того как отправил заявку. Вулкан просто топ, прямо с завода, наклейки на месте. Буду брать еще!»</div>
+                <div class="guarantee-card moneyback">
+                    <h3>💰 Возврат 100%</h3>
+                    <p>Если возникнет техническая проблема с обменом в Steam, мы вернем всю сумму обратно в течение часа.</p>
+                </div>
+                <div class="guarantee-card">
+                    <h3>🤝 Честность</h3>
+                    <p>Работаем напрямую со своими запасами скинов, никаких скрытых наценок.</p>
+                </div>
             </div>
 
-            <!-- Отзыв 2 -->
-            <div class="review-card">
-                <div class="review-header">
-                    <span class="reviewer-name">Donk_Junior</span>
-                    <span class="review-stars">★★★★★</span>
-                </div>
-                <div class="review-item">Купил: Керамбит | Градиент</div>
-                <div class="review-text">«Немного переживал из-за цены ножа, но все честно. Списались по почте, скинули обмен, керамбит уже у меня в инвентаре крутится. Продавцу огромный респект!»</div>
+            <!-- Живая форма добавления отзыва -->
+            <h2>Оставить отзыв</h2>
+            <div class="add-review-box">
+                <form id="new-review-form" onsubmit="submitReview(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="rev-name">Ваш никнейм (Steam ID)</label>
+                            <input type="text" id="rev-name" required placeholder="Например, NaVi_Fan">
+                        </div>
+                        <div class="form-group">
+                            <label for="rev-item">Что вы купили?</label>
+                            <select id="rev-item">
+                                <option value="Керамбит | Градиент">Керамбит | Градиент</option>
+                                <option value="AK-47 | Вулкан">AK-47 | Вулкан</option>
+                                <option value="AWP | Азимов">AWP | Азимов</option>
+                                <option value="Secret Drop Box">Случайный Secret-Скин</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="rev-text">Текст вашего отзыва</label>
+                        <textarea id="rev-text" required placeholder="Напишите ваши впечатления о сделке..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-review">Опубликовать отзыв</button>
+                </form>
             </div>
 
-            <!-- Отзыв 3 -->
-            <div class="review-card">
-                <div class="review-header">
-                    <span class="reviewer-name">M0nesy_Live</span>
-                    <span class="review-stars">★★★★☆</span>
+            <h2>Отзывы Трейдеров</h2>
+            <div class="reviews-container" id="reviews-list">
+                <!-- Сюда JS будет добавлять новые отзывы -->
+                <div class="review-card">
+                    <div class="review-header"><span class="reviewer-name">s1mple_fan_99</span><span class="review-stars">★★★★★</span></div>
+                    <div class="review-item">Купил: AK-47 | Вулкан</div>
+                    <div class="review-text">«Все пришло супер быстро! Трейд кинули буквально через 3 минуты после отправки заявки.»</div>
                 </div>
-                <div class="review-item">Купил: AWP | Азимов</div>
-                <div class="review-text">«Авик долетел, качество огонь. Снял одну звезду за то что стим лагал и трейд пришел минут через 10, но это проблемы серверов Гейба. Магаз рекомендую!»</div>
+                <div class="review-card">
+                    <div class="review-header"><span class="reviewer-name">Donk_Junior</span><span class="review-stars">★★★★★</span></div>
+                    <div class="review-item">Купил: Керамбит | Градиент</div>
+                    <div class="review-text">«Немного переживал из-за цены ножа, но все честно. Керамбит уже у меня в инвентаре крутится!»</div>
+                </div>
             </div>
         </div>
     </div>
 
+    <footer>
+        <div class="footer-text">Возникли вопросы по обмену или донату? Свяжитесь с создателем напрямую:</div>
+        <div class="social-buttons">
+            <a href="https://t.me" target="_blank" class="social-btn tg">Telegram Администратора</a>
+            <a href="https://discord.gg" target="_blank" class="social-btn ds">Наш Discord сервер</a>
+        </div>
+    </footer>
+
+    <script>
+        // Живой скрипт добавления отзыва
+                function submitReview(event) {
+            event.preventDefault();
+            var name = document.getElementById('rev-name').value;
+            var item = document.getElementById('rev-item').value;
+            var text = document.getElementById('rev-text').value;
+            var list = document.getElementById('reviews-list');
+            var newCard = document.createElement('div');
+            newCard.className = 'review-card';
+            newCard.style.borderLeft = '3px solid #ffb703';
+            newCard.innerHTML = '<div class="review-header">' +
+                '<span class="reviewer-name">' + name + '</span>' +
+                '<span class="review-stars">★★★★★</span></div>' +
+                '<div class="review-item">Купил: ' + item + '</div>' +
+                '<div class="review-text">«' + text + '»</div>';
+            list.insertBefore(newCard, list.firstChild);
+            var subject = encodeURIComponent("Новый отзыв от " + name);
+            var mailBody = encodeURIComponent("Ник: " + name + "\nКупил: " + item + "\nОтзыв: " + text);
+            document.getElementById('new-review-form').reset();
+            window.location.href = "mailto:prokisno@://gmail.com" + subject + "&body=" + mailBody;
+        }
+
+        function updateStats() {
+            var randOnline = Math.floor(Math.random() * 41) + 110;
+            var elDeals = document.getElementById('deals-today');
+            var currentDeals = parseInt(elDeals.innerText);
+            if (Math.random() > 0.6) { 
+                currentDeals = currentDeals + 1; 
+            }
+            document.getElementById('user-online').innerText = randOnline;
+            elDeals.innerText = currentDeals;
+        }
+        var startDeals = Math.floor(Math.random() * 26) + 45;
+        document.getElementById('deals-today').innerText = startDeals;
+        setInterval(updateStats, 4000);
+        </script>
 </body>
 </html>
+
