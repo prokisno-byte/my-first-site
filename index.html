@@ -18,7 +18,7 @@
         /* Киберспортивная шапка сайта */
         header { 
             background: linear-gradient(180deg, rgba(22, 26, 34, 0.9) 0%, rgba(13, 14, 18, 0.9) 100%);
-            padding: 40px 20px; 
+            padding: 35px 20px; 
             border-bottom: 2px solid #ffb703; 
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
         }
@@ -33,6 +33,11 @@
         }
         header p { color: #8b949e; margin: 12px 0 0 0; font-size: 16px; font-weight: 500; }
         
+        /* Навигационное меню */
+        nav { margin-top: 20px; }
+        nav a { color: #8b949e; text-decoration: none; margin: 0 15px; font-weight: 600; font-size: 16px; transition: color 0.2s, text-shadow 0.2s; }
+        nav a:hover, nav a.active { color: #ffb703; text-shadow: 0 0 10px rgba(255,183,3,0.3); }
+
         /* Сетка для карточек */
         .shop-container {
             display: flex; flex-wrap: wrap; justify-content: center;
@@ -110,6 +115,10 @@
     <header>
         <h1>CS2 Skin Shop & Донат</h1>
         <p>Премиальная витрина редких игровых предметов</p>
+        <nav>
+            <a href="index.html" class="active">Витрина</a>
+            <a href="reviews.html">Отзывы и Гарантии</a>
+        </nav>
     </header>
 
     <div class="shop-container">
