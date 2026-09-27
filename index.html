@@ -15,31 +15,36 @@
         h1 { margin: 0; color: #ffffff; font-size: 28px; }
         p { color: #adbac7; margin: 10px 0 0 0; }
         
-        /* Сетка для товаров */
         .shop-container {
             display: flex; flex-wrap: wrap; justify-content: center;
             gap: 25px; padding: 40px 20px; max-width: 1200px; margin: 0 auto;
         }
-        /* Карточка скина */
         .skin-card {
             background-color: #22272e; border: 1px solid #444c56;
             border-radius: 8px; width: 260px; padding: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: transform 0.2s, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .skin-card:hover { transform: translateY(-5px); border-color: #2ea44f; }
         
-        /* Заглушка для картинок скинов */
-        .skin-image {
+        .skin-image-container {
             width: 100%; height: 140px; background-color: #1c2128;
             border-radius: 6px; display: flex; align-items: center;
-            justify-content: center; font-size: 40px; margin-bottom: 15px;
+            justify-content: center; margin-bottom: 15px;
+            overflow: hidden;
+        }
+        .skin-image-container img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
         }
         
         .skin-title { font-size: 18px; font-weight: bold; margin: 10px 0; color: #ffffff; }
         .skin-price { font-size: 20px; color: #2ea44f; font-weight: bold; margin-bottom: 15px; }
         
-        /* Кнопка купить */
         .btn-buy {
             display: block; width: 100%; padding: 10px 0;
             background-color: #2ea44f; color: white; font-weight: bold;
@@ -57,29 +62,34 @@
     </header>
 
     <div class="shop-container">
-        <!-- Скин 1 -->
+        <!-- Скин 1: Керамбит Градиент -->
         <div class="skin-card">
-            <div class="skin-image">🔪</div>
+            <div class="skin-image-container">
+                <img src="https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SD1iWwOpzj-1gSCGn20tztm_UyIn_JHKUbgYlWMcmQ-ZcskSwldS0MOnntAfd3YlMzH35jntXrnE8SOGRGG8" alt="Керамбит | Градиент">
+            </div>
             <div class="skin-title">Керамбит | Градиент</div>
-            <div class="skin-price">45 000 ₽</div>
-            <!-- Ссылки ведут на страницу заказа и передают название скина в адресе -->
-            <a href="register.html?item=Karambit_Fade" class="btn-buy">Купить</a>
+            <div class="skin-price">20 000 ₴</div>
+            <a href="register.html?item=Karambit_Fade&price=20000_UAH" class="btn-buy">Купить</a>
         </div>
 
-        <!-- Скин 2 -->
+        <!-- Скин 2: AK-47 Вулкан -->
         <div class="skin-card">
-            <div class="skin-image">🔫</div>
+            <div class="skin-image-container">
+                <img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV086jloKOhcj5Nr_Yg2Yf6cR02LmS9tn3ilK1qBVkMGzyIICRdgRvYVCDqwTsyO7n1JTo6M7PwGwj5Hei-fvc4A" alt="AK-47 | Вулкан">
+            </div>
             <div class="skin-title">AK-47 | Вулкан</div>
-            <div class="skin-price">12 500 ₽</div>
-            <a href="register.html?item=AK47_Vulcan" class="btn-buy">Купить</a>
+            <div class="skin-price">5 500 ₴</div>
+            <a href="register.html?item=AK47_Vulcan&price=5500_UAH" class="btn-buy">Купить</a>
         </div>
 
-        <!-- Скин 3 -->
+        <!-- Скин 3: AWP Азимов -->
         <div class="skin-card">
-            <div class="skin-image">🎯</div>
+            <div class="skin-image-container">
+                <img src="https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf_jdk7uW-V6V-Kf2cGFiYxO9gqa9sSS_mwR4h4D6Az9ardyqQa1NyDpIkTOBb5ES7wYDiMOyz4lPf2YsX02yg2Ubsh123" alt="AWP | Азимов">
+            </div>
             <div class="skin-title">AWP | Азимов</div>
-            <div class="skin-price">9 800 ₽</div>
-            <a href="register.html?item=AWP_Asiimov" class="btn-buy">Купить</a>
+            <div class="skin-price">4 300 ₴</div>
+            <a href="register.html?item=AWP_Asiimov&price=4300_UAH" class="btn-buy">Купить</a>
         </div>
     </div>
 
