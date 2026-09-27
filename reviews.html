@@ -42,10 +42,9 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-align: left;
         }
         .guarantee-card h3 { color: #2ea44f; margin-top: 0; font-size: 18px; }
-        .guarantee-card.moneyback h3 { color: #ffb703; } /* Золотая плашка возврата */
+        .guarantee-card.moneyback h3 { color: #ffb703; }
         .guarantee-card p { color: #adbac7; font-size: 14px; line-height: 1.5; margin: 0; }
 
-        /* Стили новой формы добавления отзывов */
         .add-review-box {
             background: #161a22; border: 1px solid #30363d; padding: 30px; border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3); margin-bottom: 40px; text-align: left;
@@ -61,7 +60,7 @@
         .add-review-box input:focus, .add-review-box textarea:focus, .add-review-box select:focus { border-color: #ffb703; outline: none; }
         .btn-review {
             background: linear-gradient(135deg, #1f7a3e 0%, #2ea44f 100%);
-            color: #white; color: white; border: none; padding: 12px 24px; font-weight: 700;
+            color: white; border: none; padding: 12px 24px; font-weight: 700;
             border-radius: 6px; cursor: pointer; text-transform: uppercase; font-size: 13px;
         }
         .btn-review:hover { background: linear-gradient(135deg, #2ea44f 0%, #34d058 100%); }
@@ -86,7 +85,6 @@
             padding: 8px 18px; font-weight: 600; text-decoration: none; border-radius: 6px; font-size: 14px; transition: all 0.2s;
         }
         .social-btn.tg:hover { background: #24a1de; border-color: #24a1de; }
-        .social-btn.ds:hover { background: #5865f2; border-color: #5865f2; }
     </style>
 </head>
 <body>
@@ -97,18 +95,17 @@
             <nav>
                 <a href="index.html">Витрина</a>
                 <a href="reviews.html" class="active">Отзывы и Гарантии</a>
+                <a href="support.html">Поддержка</a>
             </nav>
         </header>
 
         <div class="live-stats">
-            <div class="stat-item">Онлайн-трейдеров: <span id="user-online">124</span></div>
+            <div class="stat-item">Online-трейдеров: <span id="user-online">124</span></div>
             <div class="stat-item">Сделок за сегодня: <span id="deals-today">57</span></div>
             <div class="stat-item">Доставка заявки: <span>~3 мин</span></div>
         </div>
 
         <div class="container">
-            <!-- Раздел обновленных гарантий -->
-            <h2>Наши Гарантии</h2>
             <div class="guarantees-grid">
                 <div class="guarantee-card">
                     <h3>⚡ Быстрый Трейд</h3>
@@ -124,7 +121,6 @@
                 </div>
             </div>
 
-            <!-- Живая форма добавления отзыва -->
             <h2>Оставить отзыв</h2>
             <div class="add-review-box">
                 <form id="new-review-form" onsubmit="submitReview(event)">
@@ -145,7 +141,7 @@
                     </div>
                     <div class="form-group" style="margin-bottom: 20px;">
                         <label for="rev-text">Текст вашего отзыва</label>
-                        <textarea id="rev-text" required placeholder="Напишите ваши впечатления о сделке..."></textarea>
+                        <textarea id="rev-text" required placeholder="Напишите ваши впечатления..."></textarea>
                     </div>
                     <button type="submit" class="btn-review">Опубликовать отзыв</button>
                 </form>
@@ -153,7 +149,6 @@
 
             <h2>Отзывы Трейдеров</h2>
             <div class="reviews-container" id="reviews-list">
-                <!-- Сюда JS будет добавлять новые отзывы -->
                 <div class="review-card">
                     <div class="review-header"><span class="reviewer-name">s1mple_fan_99</span><span class="review-stars">★★★★★</span></div>
                     <div class="review-item">Купил: AK-47 | Вулкан</div>
@@ -169,16 +164,14 @@
     </div>
 
     <footer>
-        <div class="footer-text">Возникли вопросы по обмену или донату? Свяжитесь с создателем напрямую:</div>
+        <div class="footer-text">Возникли вопросы по обмену или донату? Свяжитесь с поддержкой:</div>
         <div class="social-buttons">
-            <a href="https://t.me" target="_blank" class="social-btn tg">Telegram Администратора</a>
-            <a href="https://discord.gg" target="_blank" class="social-btn ds">Наш Discord сервер</a>
+            <a href="https://t.me" target="_blank" class="social-btn tg">Telegram Поддержка</a>
         </div>
     </footer>
 
     <script>
-        // Живой скрипт добавления отзыва
-                function submitReview(event) {
+        function submitReview(event) {
             event.preventDefault();
             var name = document.getElementById('rev-name').value;
             var item = document.getElementById('rev-item').value;
@@ -187,32 +180,39 @@
             var newCard = document.createElement('div');
             newCard.className = 'review-card';
             newCard.style.borderLeft = '3px solid #ffb703';
-            newCard.innerHTML = '<div class="review-header">' +
-                '<span class="reviewer-name">' + name + '</span>' +
-                '<span class="review-stars">★★★★★</span></div>' +
-                '<div class="review-item">Купил: ' + item + '</div>' +
-                '<div class="review-text">«' + text + '»</div>';
-            list.insertBefore(newCard, list.firstChild);
-            var subject = encodeURIComponent("Новый отзыв от " + name);
-            var mailBody = encodeURIComponent("Ник: " + name + "\nКупил: " + item + "\nОтзыв: " + text);
-            document.getElementById('new-review-form').reset();
-            window.location.href = "mailto:prokisno@://gmail.com" + subject + "&body=" + mailBody;
-        }
+<script>
+    function submitReview(event) {
+        event.preventDefault();
+        var name = document.getElementById('rev-name').value;
+        var item = document.getElementById('rev-item').value;
+        var text = document.getElementById('rev-text').value;
+        var list = document.getElementById('reviews-list');
+        var newCard = document.createElement('div');
+        newCard.className = 'review-card';
+        newCard.style.borderLeft = '3px solid #ffb703';
+        newCard.innerHTML = '<div class="review-header">' +
+            '<span class="reviewer-name">' + name + '</span>' +
+            '<span class="review-stars">★★★★★</span></div>' +
+            '<div class="review-item">Купил: ' + item + '</div>' +
+            '<div class="review-text">«' + text + '»</div>';
+        list.insertBefore(newCard, list.firstChild);
+        var subject = encodeURIComponent("Новый отзыв от " + name);
+        var mailBody = encodeURIComponent("Ник: " + name + "\nКупил: " + item + "\nОтзыв: " + text);
+        document.getElementById('new-review-form').reset();
+        window.location.href = "mailto:prokisno@://gmail.com" + subject + "&body=" + mailBody;
+    }
 
-        function updateStats() {
-            var randOnline = Math.floor(Math.random() * 41) + 110;
-            var elDeals = document.getElementById('deals-today');
-            var currentDeals = parseInt(elDeals.innerText);
-            if (Math.random() > 0.6) { 
-                currentDeals = currentDeals + 1; 
-            }
-            document.getElementById('user-online').innerText = randOnline;
-            elDeals.innerText = currentDeals;
+    function updateStats() {
+        var randOnline = Math.floor(Math.random() * 41) + 110;
+        var elDeals = document.getElementById('deals-today');
+        var currentDeals = parseInt(elDeals.innerText);
+        if (Math.random() > 0.6) {
+            currentDeals = currentDeals + 1;
         }
-        var startDeals = Math.floor(Math.random() * 26) + 45;
-        document.getElementById('deals-today').innerText = startDeals;
-        setInterval(updateStats, 4000);
-        </script>
-</body>
-</html>
-
+        document.getElementById('user-online').innerText = randOnline;
+        elDeals.innerText = currentDeals;
+    }
+    var startDeals = Math.floor(Math.random() * 26) + 45;
+    document.getElementById('deals-today').innerText = startDeals;
+    setInterval(updateStats, 4000);
+</script>
