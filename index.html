@@ -3,93 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой первый сайт</title>
+    <title>CS2 Skin Shop</title>
     <style>
-        /* Базовые стили для светлой темы */
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; 
-            text-align: center; 
-            margin: 0;
-            padding-top: 100px; 
-            background-color: #f4f6f9; 
-            color: #333;
-            transition: background-color 0.3s, color 0.3s;
+            margin: 0; padding: 0;
+            background-color: #1a1d20; color: #f0f2f5;
+            text-align: center;
         }
-        h1 { color: #24292e; font-size: 32px; margin-bottom: 10px; transition: color 0.3s; }
-        p { color: #586069; font-size: 18px; margin-bottom: 30px; transition: color 0.3s; }
+        header { background-color: #22272e; padding: 30px; border-bottom: 2px solid #2ea44f; }
+        h1 { margin: 0; color: #ffffff; font-size: 28px; }
+        p { color: #adbac7; margin: 10px 0 0 0; }
         
-        /* Стили для ТЕМНОЙ темы */
-        body.dark-mode {
-            background-color: #1a1d20;
-            color: #f0f2f5;
+        /* Сетка для товаров */
+        .shop-container {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 25px; padding: 40px 20px; max-width: 1200px; margin: 0 auto;
         }
-        body.dark-mode h1 { color: #ffffff; }
-        body.dark-mode p { color: #adbac7; }
-
-        /* Кнопка смены темы */
-        .theme-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 8px 14px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 6px;
-            border: 1px solid #d1d5da;
-            background-color: #ffffff;
-            color: #333;
-            transition: all 0.2s;
+        /* Карточка скина */
+        .skin-card {
+            background-color: #22272e; border: 1px solid #444c56;
+            border-radius: 8px; width: 260px; padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s, border-color 0.2s;
         }
-        body.dark-mode .theme-toggle {
-            background-color: #2d3139;
-            color: #ffffff;
-            border-color: #444c56;
+        .skin-card:hover { transform: translateY(-5px); border-color: #2ea44f; }
+        
+        /* Заглушка для картинок скинов */
+        .skin-image {
+            width: 100%; height: 140px; background-color: #1c2128;
+            border-radius: 6px; display: flex; align-items: center;
+            justify-content: center; font-size: 40px; margin-bottom: 15px;
         }
         
-        /* Кнопка регистрации */
-        .btn-register {
-            display: inline-block;
-            padding: 14px 28px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #ffffff;
-            background-color: #2ea44f;
-            border: none;
-            border-radius: 6px;
-            text-decoration: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: background-color 0.2s, transform 0.1s;
+        .skin-title { font-size: 18px; font-weight: bold; margin: 10px 0; color: #ffffff; }
+        .skin-price { font-size: 20px; color: #2ea44f; font-weight: bold; margin-bottom: 15px; }
+        
+        /* Кнопка купить */
+        .btn-buy {
+            display: block; width: 100%; padding: 10px 0;
+            background-color: #2ea44f; color: white; font-weight: bold;
+            text-decoration: none; border-radius: 6px; transition: background-color 0.2s;
+            box-sizing: border-box;
         }
-        .btn-register:hover { background-color: #2c974b; }
-        .btn-register:active { transform: scale(0.98); }
+        .btn-buy:hover { background-color: #2c974b; }
     </style>
 </head>
 <body>
 
-    <!-- Кнопка переключения -->
-    <button class="theme-toggle" onclick="toggleTheme()">Сменить тему</button>
+    <header>
+        <h1>CS2 Skin Shop & Донат</h1>
+        <p>Покупка топовых скинов без переплат</p>
+    </header>
 
-    <h1>Ура! Мой бесплатный сайт работает!</h1>
-    <p>Проект успешно запущен на GitHub Pages без конструкторов и Google.</p>
-    
-    <a href="register.html" class="btn-register">Зарегистрироваться на сайте</a>
+    <div class="shop-container">
+        <!-- Скин 1 -->
+        <div class="skin-card">
+            <div class="skin-image">🔪</div>
+            <div class="skin-title">Керамбит | Градиент</div>
+            <div class="skin-price">45 000 ₽</div>
+            <!-- Ссылки ведут на страницу заказа и передают название скина в адресе -->
+            <a href="register.html?item=Karambit_Fade" class="btn-buy">Купить</a>
+        </div>
 
-    <script>
-        // Проверяем сохраненную тему
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-mode');
-        }
-        // Функция переключения
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-            if (document.body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
-            }
-        }
-    </script>
+        <!-- Скин 2 -->
+        <div class="skin-card">
+            <div class="skin-image">🔫</div>
+            <div class="skin-title">AK-47 | Вулкан</div>
+            <div class="skin-price">12 500 ₽</div>
+            <a href="register.html?item=AK47_Vulcan" class="btn-buy">Купить</a>
+        </div>
+
+        <!-- Скин 3 -->
+        <div class="skin-card">
+            <div class="skin-image">🎯</div>
+            <div class="skin-title">AWP | Азимов</div>
+            <div class="skin-price">9 800 ₽</div>
+            <a href="register.html?item=AWP_Asiimov" class="btn-buy">Купить</a>
+        </div>
+    </div>
+
 </body>
 </html>
