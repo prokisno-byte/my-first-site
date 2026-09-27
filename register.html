@@ -18,7 +18,8 @@
         }
         header h1 { margin: 0; color: #ffffff; font-size: 34px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
         nav { margin-top: 20px; }
-        nav a { color: #8b949e; text-decoration: none; margin: 0 15px; font-weight: 600; font-size: 16px; }
+        nav a { color: #8b949e; text-decoration: none; margin: 0 15px; font-weight: 600; font-size: 16px; transition: color 0.2s; }
+        nav a:hover { color: #ffb703; }
 
         .center-wrap { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
         .form-container { 
@@ -52,8 +53,9 @@
         .social-buttons { display: flex; justify-content: center; gap: 15px; }
         .social-btn {
             color: #ffffff; background: #161a22; border: 1px solid #30363d;
-            padding: 8px 18px; font-weight: 600; text-decoration: none; border-radius: 6px; font-size: 14px;
+            padding: 8px 18px; font-weight: 600; text-decoration: none; border-radius: 6px; font-size: 14px; transition: all 0.2s;
         }
+        .social-btn.tg:hover { background: #24a1de; border-color: #24a1de; }
     </style>
 </head>
 <body>
@@ -61,8 +63,9 @@
     <header>
         <h1>CS2 Skin Shop & Донат</h1>
         <nav>
-            <a href="index.html" style="color: #8b949e; text-decoration: none;">Витрина</a>
-            <a href="reviews.html" style="color: #8b949e; text-decoration: none; margin-left: 30px;">Отзывы и Гарантии</a>
+            <a href="index.html">Витрина</a>
+            <a href="reviews.html">Отзывы и Гарантии</a>
+            <a href="support.html">Поддержка</a>
         </nav>
     </header>
 
@@ -75,7 +78,6 @@
                     <input type="text" id="skin-name" readonly>
                 </div>
                 
-                <!-- Новое выпадающее меню выбора износа -->
                 <div class="input-group" id="wear-group">
                     <label for="skin-wear">Качество (Потертость)</label>
                     <select id="skin-wear" onchange="recalculatePrice()">
@@ -105,10 +107,9 @@
     </div>
 
     <footer>
-        <div class="footer-text">Возникли вопросы по обмену или донату? Свяжитесь с создателем напрямую:</div>
+        <div class="footer-text">Возникли вопросы по обмену или донату? Свяжитесь с поддержкой:</div>
         <div class="social-buttons">
-            <a href="https://t.me" target="_blank" class="social-btn" style="background:#24a1de; border-color:#24a1de;">Telegram Администратора</a>
-            <a href="https://discord.gg" target="_blank" class="social-btn" style="background:#5865f2; border-color:#5865f2; margin-left: 15px;">Наш Discord сервер</a>
+            <a href="https://t.me" target="_blank" class="social-btn tg">Telegram Поддержка</a>
         </div>
     </footer>
 
@@ -116,7 +117,6 @@
         var urlParams = new URLSearchParams(window.location.search);
         var itemKey = urlParams.get('item') || 'Не выбран';
         
-        // Базовые цены для «Прямо с завода»
         var basePrices = {
             'Karambit_Fade': 20000,
             'AK47_Vulcan': 5500,
@@ -124,7 +124,6 @@
             'Secret_Drop_Box': 1500
         };
 
-        // Подсовываем красивое имя пушки
         var itemNames = {
             'Karambit_Fade': 'Керамбит | Градиент',
             'AK47_Vulcan': 'AK-47 | Вулкан',
@@ -134,7 +133,6 @@
 
         document.getElementById('skin-name').value = itemNames[itemKey] || itemKey.replace(/_/g, ' ');
 
-        // Скрываем выбор износа для секретного бокса
         if (itemKey === 'Secret_Drop_Box') {
             document.getElementById('wear-group').style.display = 'none';
         }
@@ -144,16 +142,18 @@
             var basePrice = basePrices[itemKey] || 0;
             var finalPrice = basePrice;
 
-            // Если качество хуже, делаем скин дешевле (как в игре)
             if (itemKey !== 'Secret_Drop_Box') {
-                if (wear === 'MW') finalPrice = Math.floor(basePrice * 0.85); // -15%
-                if (wear === 'FT') finalPrice = Math.floor(basePrice * 0.70); // -30%
+                if (wear === 'MW') {
+                    finalPrice = Math.floor(basePrice * 0.85);
+                }
+                if (wear === 'FT') {
+                    finalPrice = Math.floor(basePrice * 0.70);
+                }
             }
 
             document.getElementById('skin-price-display').value = finalPrice + " ₴";
         }
 
-        // Запускаем первый расчет цены при открытии
         recalculatePrice();
 
         function sendOrder(event) {
@@ -163,12 +163,10 @@
             var price = document.getElementById('skin-price-display').value;
             var trade = document.getElementById('steam-link').value;
             var email = document.getElementById('email').value;
-            
             var wearText = (itemKey === 'Secret_Drop_Box') ? '' : ' [' + wear + ']';
             
             var subject = encodeURIComponent("Новый заказ скина CS2");
             var body = encodeURIComponent("Детали покупки:\n\nТовар: " + skin + wearText + "\nЦена: " + price + "\nТрейд-ссылка: " + trade + "\nEmail для связи: " + email);
-            
             window.location.href = "mailto:prokisno@://gmail.com" + subject + "&body=" + body;
         }
     </script>
