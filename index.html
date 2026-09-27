@@ -3,89 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS2 Skin Shop</title>
+    <title>CS2 Premium Market</title>
     <style>
+        /* Глубокий премиальный фон с градиентом */
         body { 
-            font-family: 'Segoe UI', Arial, sans-serif; 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
             margin: 0; padding: 0;
-            background-color: #1a1d20; color: #f0f2f5;
+            background: radial-gradient(circle at top, #1c1f26 0%, #0d0e12 100%);
+            color: #f0f2f5;
             text-align: center;
+            min-height: 100vh;
         }
-        header { background-color: #22272e; padding: 30px; border-bottom: 2px solid #2ea44f; }
-        h1 { margin: 0; color: #ffffff; font-size: 28px; }
-        p { color: #adbac7; margin: 10px 0 0 0; }
         
+        /* Киберспортивная шапка сайта */
+        header { 
+            background: linear-gradient(180deg, rgba(22, 26, 34, 0.9) 0%, rgba(13, 14, 18, 0.9) 100%);
+            padding: 40px 20px; 
+            border-bottom: 2px solid #ffb703; 
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+        header h1 { 
+            margin: 0; 
+            color: #ffffff; 
+            font-size: 34px; 
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
+        }
+        header p { color: #8b949e; margin: 12px 0 0 0; font-size: 16px; font-weight: 500; }
+        
+        /* Сетка для карточек */
         .shop-container {
             display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 25px; padding: 40px 20px; max-width: 1200px; margin: 0 auto;
+            gap: 35px; padding: 60px 20px; max-width: 1200px; margin: 0 auto;
         }
-        .skin-card {
-            background-color: #22272e; border: 1px solid #444c56;
-            border-radius: 8px; width: 260px; padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: transform 0.2s, border-color 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .skin-card:hover { transform: translateY(-5px); border-color: #2ea44f; }
         
-        .skin-image-container {
-            width: 100%; height: 140px; background-color: #1c2128;
-            border-radius: 6px; display: flex; align-items: center;
-            justify-content: center; margin-bottom: 15px;
+        /* Нишевая неоновая карточка скина */
+        .skin-card {
+            background: #161a22; 
+            border: 1px solid #30363d;
+            border-radius: 12px; 
+            width: 270px; 
+            padding: 24px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        /* Цветовое свечение по редкости при наведении (Редкость: Тайное / Нож) */
+        .skin-card.rare:hover { 
+            transform: translateY(-8px); 
+            border-color: #ffb703; 
+            box-shadow: 0 15px 35px rgba(255, 183, 3, 0.25); 
+        }
+        /* Цветовое свечение (Редкость: Засекреченное) */
+        .skin-card.classified:hover { 
+            transform: translateY(-8px); 
+            border-color: #eb4b4b; 
+            box-shadow: 0 15px 35px rgba(235, 75, 75, 0.25); 
+        }
+        
+        /* Контейнер для картинок */
+        .skin-image-container {
+            width: 100%; height: 150px; 
+            background: radial-gradient(circle, #1f242e 0%, #161a22 100%);
+            border-radius: 8px; display: flex; align-items: center;
+            justify-content: center; margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
         }
         .skin-image-container img {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 95%; max-height: 95%;
             object-fit: contain;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+            transition: transform 0.3s ease;
+        }
+        .skin-card:hover .skin-image-container img {
+            transform: scale(1.08) rotate(-2deg);
         }
         
-        .skin-title { font-size: 18px; font-weight: bold; margin: 10px 0; color: #ffffff; }
-        .skin-price { font-size: 20px; color: #2ea44f; font-weight: bold; margin-bottom: 15px; }
+        .skin-title { font-size: 19px; font-weight: 700; margin: 10px 0; color: #ffffff; text-align: left; }
+        .skin-price { font-size: 22px; color: #ffb703; font-weight: 800; margin-bottom: 20px; text-align: left; }
         
+        /* Киберспортивная кнопка купить */
         .btn-buy {
-            display: block; width: 100%; padding: 10px 0;
-            background-color: #2ea44f; color: white; font-weight: bold;
-            text-decoration: none; border-radius: 6px; transition: background-color 0.2s;
+            display: block; width: 100%; padding: 12px 0;
+            background: linear-gradient(135deg, #1f7a3e 0%, #2ea44f 100%);
+            color: white; font-weight: 700; font-size: 16px;
+            text-decoration: none; border-radius: 8px; text-transform: uppercase;
+            letter-spacing: 1px;
             box-sizing: border-box;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 4px 15px rgba(46, 164, 79, 0.2);
+            transition: all 0.2s ease;
         }
-        .btn-buy:hover { background-color: #2c974b; }
+        .btn-buy:hover { 
+            background: linear-gradient(135deg, #2ea44f 0%, #34d058 100%);
+            box-shadow: 0 6px 20px rgba(46, 164, 79, 0.4);
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>CS2 Skin Shop & Донат</h1>
-        <p>Покупка топовых скинов без переплат</p>
+        <p>Премиальная витрина редких игровых предметов</p>
     </header>
 
     <div class="shop-container">
-        <!-- Скин 1: Керамбит Градиент -->
-        <div class="skin-card">
+        <!-- Скин 1: Керамбит Градиент (Золотая подсветка) -->
+        <div class="skin-card rare">
             <div class="skin-image-container">
-                <img src="https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-SD1iWwOpzj-1gSCGn20tztm_UyIn_JHKUbgYlWMcmQ-ZcskSwldS0MOnntAfd3YlMzH35jntXrnE8SOGRGG8" alt="Керамбит | Градиент">
+                <img src="https://akamaihd.net" alt="Керамбит | Градиент">
             </div>
             <div class="skin-title">Керамбит | Градиент</div>
             <div class="skin-price">20 000 ₴</div>
             <a href="register.html?item=Karambit_Fade&price=20000_UAH" class="btn-buy">Купить</a>
         </div>
 
-        <!-- Скин 2: AK-47 Вулкан -->
-        <div class="skin-card">
+        <!-- Скин 2: AK-47 Вулкан (Красная подсветка) -->
+        <div class="skin-card classified">
             <div class="skin-image-container">
-                <img src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhjxszJemkV086jloKOhcj5Nr_Yg2Yf6cR02LmS9tn3ilK1qBVkMGzyIICRdgRvYVCDqwTsyO7n1JTo6M7PwGwj5Hei-fvc4A" alt="AK-47 | Вулкан">
+                <img src="https://akamaihd.net" alt="AK-47 | Вулкан">
             </div>
             <div class="skin-title">AK-47 | Вулкан</div>
             <div class="skin-price">5 500 ₴</div>
             <a href="register.html?item=AK47_Vulcan&price=5500_UAH" class="btn-buy">Купить</a>
         </div>
 
-        <!-- Скин 3: AWP Азимов -->
-        <div class="skin-card">
+        <!-- Скин 3: AWP Азимов (Красная подсветка) -->
+        <div class="skin-card classified">
             <div class="skin-image-container">
-                <img src="https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf_jdk7uW-V6V-Kf2cGFiYxO9gqa9sSS_mwR4h4D6Az9ardyqQa1NyDpIkTOBb5ES7wYDiMOyz4lPf2YsX02yg2Ubsh123" alt="AWP | Азимов">
+                <img src="https://akamaihd.net" alt="AWP | Азимов">
             </div>
             <div class="skin-title">AWP | Азимов</div>
             <div class="skin-price">4 300 ₴</div>
