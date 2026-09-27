@@ -57,13 +57,12 @@
         .skin-image-container img { width: auto; height: auto; max-width: 90%; max-height: 90%; display: block; transition: transform 0.3s ease; }
         .skin-card:hover .skin-image-container img { transform: scale(1.08) rotate(-2deg); }
         
-        /* Иконка коробки для секретного скина */
         .secret-icon { font-size: 80px; filter: drop-shadow(0 0 15px rgba(138, 43, 226, 0.4)); animation: float 3s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
         .skin-title { font-size: 19px; font-weight: 700; margin: 5px 0; color: #ffffff; text-align: left; }
         
-        /* Плашки качества */
+        /* Плашки износа */
         .quality-badge { 
             display: inline-block; align-self: flex-start; padding: 3px 8px; font-size: 11px; 
             font-weight: 700; border-radius: 4px; margin-bottom: 10px; text-transform: uppercase; 
@@ -84,7 +83,6 @@
         }
         .btn-buy:hover { background: linear-gradient(135deg, #2ea44f 0%, #34d058 100%); box-shadow: 0 6px 20px rgba(46, 164, 79, 0.4); }
 
-        /* Контакты внизу сайта */
         footer {
             background: #0d0e12; border-top: 1px solid #30363d; padding: 25px 20px; margin-top: 40px;
         }
@@ -151,7 +149,7 @@
                 <a href="register.html?item=AWP_Asiimov&price=4300_UAH" class="btn-buy">Купить</a>
             </div>
 
-            <!-- Бонусная фишка: Случайный скин -->
+            <!-- Секретный бокс -->
             <div class="skin-card secret-box">
                 <div class="skin-image-container">
                     <div class="secret-icon">📦</div>
@@ -164,7 +162,6 @@
         </div>
     </div>
 
-    <!-- Футер с контактами -->
     <footer>
         <div class="footer-text">Возникли вопросы по обмену или донату? Свяжитесь с создателем напрямую:</div>
         <div class="social-buttons">
@@ -172,6 +169,20 @@
             <a href="https://discord.gg" target="_blank" class="social-btn ds">Наш Discord сервер</a>
         </div>
     </footer>
-
     <script>
-        // Скрипт живой активности
+        function updateStats() {
+            var randOnline = Math.floor(Math.random() * 41) + 110;
+            var elDeals = document.getElementById('deals-today');
+            var currentDeals = parseInt(elDeals.innerText);
+            if (Math.random() > 0.6) {
+                currentDeals = currentDeals + 1;
+            }
+            document.getElementById('user-online').innerText = randOnline;
+            elDeals.innerText = currentDeals;
+        }
+        var startDeals = Math.floor(Math.random() * 26) + 45;
+        document.getElementById('deals-today').innerText = startDeals;
+        setInterval(updateStats, 4000);
+    </script>
+</body>
+</html>
