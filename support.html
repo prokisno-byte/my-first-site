@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Техподдержка | CS2 Market</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            margin: 0; padding: 0;
+            background: radial-gradient(circle at top, #1c1f26 0%, #0d0e12 100%);
+            color: #f0f2f5; text-align: center; min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        header { 
+            background: linear-gradient(180deg, rgba(22, 26, 34, 0.9) 0%, rgba(13, 14, 18, 0.9) 100%);
+            padding: 35px 20px; border-bottom: 2px solid #ffb703; 
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+        header h1 { margin: 0; color: #ffffff; font-size: 34px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+        nav { margin-top: 20px; }
+        nav a { color: #8b949e; text-decoration: none; margin: 0 15px; font-weight: 600; font-size: 16px; transition: color 0.2s; }
+        nav a:hover, nav a.active { color: #ffb703; text-shadow: 0 0 10px rgba(255,183,3,0.3); }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; flex-grow: 1; text-align: left; }
+        h2 { text-transform: uppercase; letter-spacing: 1px; color: #ffffff; margin-top: 30px; }
+        
+        /* Блок вопросов и ответов (FAQ) */
+        .faq-item { background: #161a22; border: 1px solid #30363d; padding: 20px; border-radius: 12px; margin-bottom: 15px; }
+        .faq-question { font-weight: 700; color: #ffb703; margin-bottom: 8px; font-size: 16px; }
+        .faq-answer { color: #adbac7; font-size: 15px; line-height: 1.5; }
+
+        /* Форма тикета */
+        .support-box { background: #161a22; border: 1px solid #30363d; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .form-group { display: flex; flex-direction: column; margin-bottom: 20px; }
+        .form-group label { font-size: 14px; font-weight: 600; color: #adbac7; margin-bottom: 6px; }
+        input, textarea, select { padding: 10px; border: 1px solid #444c56; border-radius: 6px; background: #1c2128; color: #ffffff; font-size: 15px; box-sizing: border-box; width: 100%; }
+        input:focus, textarea:focus, select:focus { border-color: #ffb703; outline: none; }
+        textarea { resize: vertical; min-height: 100px; }
+        
+        .btn-support { 
+            background: linear-gradient(135deg, #1f7a3e 0%, #2ea44f 100%);
+            color: white; border: none; padding: 12px 24px; font-weight: 700;
+            border-radius: 8px; cursor: pointer; text-transform: uppercase; font-size: 14px; width: 100%;
+        }
+        .btn-support:hover { background: linear-gradient(135deg, #2ea44f 0%, #34d058 100%); }
+
+        footer { background: #0d0e12; border-top: 1px solid #30363d; padding: 25px 20px; text-align: center; }
+        .footer-text { color: #8b949e; font-size: 14px; margin-bottom: 15px; }
+        .social-btn { color: #ffffff; background: #161a22; border: 1px solid #30363d; padding: 8px 18px; font-weight: 600; text-decoration: none; border-radius: 6px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CS2 Skin Shop & Донат</h1>
+        <nav>
+            <a href="index.html">Витрина</a>
+            <a href="reviews.html">Отзывы и Гарантии</a>
+            <a href="support.html" class="active" style="margin-left: 30px;">Поддержка</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Частые вопросы (FAQ)</h2>
+        <div class="faq-item">
+            <div class="faq-question">Мне не приходит обмен в Steam, что делать?</div>
+            <div class="faq-answer">Убедитесь, что ваш инвентарь в настройках Steam открыт для всех, а Trade URL указан без ошибок. Также проверьте, не заблокирован ли ваш трейд самой системой Steam (например, после смены пароля).</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Что делать, если я случайно закрыл письмо-заказ?</div>
+            <div class="faq-answer">Не переживайте, все операции дублируются у администратора. Если вы заполнили форму на сайте, ваш заказ уже находится в обработке. Для ускорения можете создать тикет ниже.</div>
+        </div>
+
+        <h2>Создать запрос в поддержку</h2>
+        <div class="support-box">
+            <form onsubmit="sendTicket(event)">
+                <div class="form-group">
+                    <label for="sup-name">Ваш ник / Steam ID</label>
+                    <input type="text" id="sup-name" required placeholder="Например, csgo3019">
+                </div>
+                <div class="form-group">
+                    <label for="sup-reason">Тема обращения</label>
+                    <select id="sup-reason">
+                        <option value="Проблема с доставкой трейда">Проблема с доставкой трейда</option>
+                        <option value="Вопрос по оплате/донату">Вопрос по оплате/донату</option>
+                        <option value="Предложение / Другое">Предложение / Другое</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sup-msg">Описание проблемы</label>
+                    <textarea id="sup-msg" required placeholder="Подробно опишите вашу ситуацию..."></textarea>
+                </div>
+                <button type="submit" class="btn-support">Отправить тикет</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-text">Возникли вопросы по обмену или донату? Свяжитесь с создателем напрямую:</div>
+        <a href="https://t.me" target="_blank" class="social-btn" style="background:#24a1de; border-color:#24a1de;">Telegram Администратора</a>
+    </footer>
+
+    <script>
+        function sendTicket(event) {
+            event.preventDefault();
+            var name = document.getElementById('sup-name').value;
+            var reason = document.getElementById('sup-reason').value;
+            var msg = document.getElementById('sup-msg').value;
+            
+            var subject = encodeURIComponent("Тикет поддержки от " + name);
+            var body = encodeURIComponent("Категория: " + reason + "\nПользователь: " + name + "\n\nСообщение:\n" + msg);
+            
+            window.location.href = "mailto:prokisno@://gmail.com" + subject + "&body=" + body;
+        }
+    </script>
+</body>
+</html>
