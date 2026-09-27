@@ -22,15 +22,20 @@
         nav a { color: #8b949e; text-decoration: none; margin: 0 15px; font-weight: 600; font-size: 16px; transition: color 0.2s; }
         nav a:hover, nav a.active { color: #ffb703; text-shadow: 0 0 10px rgba(255,183,3,0.3); }
 
+        .live-stats {
+            background: rgba(22, 26, 34, 0.6); border-bottom: 1px solid #30363d;
+            padding: 12px 20px; display: flex; justify-content: center; gap: 40px;
+            font-size: 14px; font-weight: 600; color: #8b949e;
+        }
+        .stat-item span { color: #2ea44f; font-weight: 800; text-shadow: 0 0 8px rgba(46,164,79,0.4); }
+
         .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; flex-grow: 1; text-align: left; }
         h2 { text-transform: uppercase; letter-spacing: 1px; color: #ffffff; margin-top: 30px; }
         
-        /* Блок вопросов и ответов (FAQ) */
         .faq-item { background: #161a22; border: 1px solid #30363d; padding: 20px; border-radius: 12px; margin-bottom: 15px; }
         .faq-question { font-weight: 700; color: #ffb703; margin-bottom: 8px; font-size: 16px; }
         .faq-answer { color: #adbac7; font-size: 15px; line-height: 1.5; }
 
-        /* Форма тикета */
         .support-box { background: #161a22; border: 1px solid #30363d; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .form-group { display: flex; flex-direction: column; margin-bottom: 20px; }
         .form-group label { font-size: 14px; font-weight: 600; color: #adbac7; margin-bottom: 6px; }
@@ -48,6 +53,7 @@
         footer { background: #0d0e12; border-top: 1px solid #30363d; padding: 25px 20px; text-align: center; }
         .footer-text { color: #8b949e; font-size: 14px; margin-bottom: 15px; }
         .social-btn { color: #ffffff; background: #161a22; border: 1px solid #30363d; padding: 8px 18px; font-weight: 600; text-decoration: none; border-radius: 6px; font-size: 14px; }
+        .social-btn:hover { background: #24a1de; border-color: #24a1de; }
     </style>
 </head>
 <body>
@@ -57,9 +63,15 @@
         <nav>
             <a href="index.html">Витрина</a>
             <a href="reviews.html">Отзывы и Гарантии</a>
-            <a href="support.html" class="active" style="margin-left: 30px;">Поддержка</a>
+            <a href="support.html" class="active">Поддержка</a>
         </nav>
     </header>
+
+    <div class="live-stats">
+        <div class="stat-item">Online-трейдеров: <span id="user-online">124</span></div>
+        <div class="stat-item">Сделок за сегодня: <span id="deals-today">57</span></div>
+        <div class="stat-item">Доставка заявки: <span>~3 мин</span></div>
+    </div>
 
     <div class="container">
         <h2>Частые вопросы (FAQ)</h2>
@@ -97,8 +109,8 @@
     </div>
 
     <footer>
-        <div class="footer-text">Возникли вопросы по обмену или донату? Свяжитесь с создателем напрямую:</div>
-        <a href="https://t.me" target="_blank" class="social-btn" style="background:#24a1de; border-color:#24a1de;">Telegram Администратора</a>
+        <div class="footer-text">Возникли вопросы по обмену или донату? Свяжитесь с поддержкой:</div>
+        <a href="https://t.me" target="_blank" class="social-btn" style="background:#24a1de; border-color:#24a1de;">Telegram Поддержка</a>
     </footer>
 
     <script>
@@ -107,12 +119,24 @@
             var name = document.getElementById('sup-name').value;
             var reason = document.getElementById('sup-reason').value;
             var msg = document.getElementById('sup-msg').value;
-            
             var subject = encodeURIComponent("Тикет поддержки от " + name);
             var body = encodeURIComponent("Категория: " + reason + "\nПользователь: " + name + "\n\nСообщение:\n" + msg);
-            
             window.location.href = "mailto:prokisno@://gmail.com" + subject + "&body=" + body;
         }
+
+        function updateStats() {
+            var randOnline = Math.floor(Math.random() * 41) + 110;
+            var elDeals = document.getElementById('deals-today');
+            var currentDeals = parseInt(elDeals.innerText);
+            if (Math.random() > 0.6) { 
+                currentDeals = currentDeals + 1; 
+            }
+            document.getElementById('user-online').innerText = randOnline;
+            elDeals.innerText = currentDeals;
+        }
+        var startDeals = Math.floor(Math.random() * 26) + 45;
+        document.getElementById('deals-today').innerText = startDeals;
+        setInterval(updateStats, 4000);
     </script>
 </body>
 </html>
